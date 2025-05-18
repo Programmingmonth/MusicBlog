@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Music & Composition Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto Mono", monospace;
+        background: radial-gradient(circle at top left, #0f0f13, #07070a);
+        color: #eee;
+        min-height: 100vh;
+      }
+
+      .glass {
+        backdrop-filter: blur(24px);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .glass:hover {
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #00f0ff, #ff00f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      nav {
+        backdrop-filter: blur(30px);
+        background: rgba(15, 15, 20, 0.7);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+      }
+
+      nav a {
+        position: relative;
+        font-weight: 600;
+        color: #aaa;
+        transition: color 0.3s ease;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: #00f0ff;
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #00f0ff;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      main {
+        padding-top: 96px;
+        max-width: 1200px;
+        margin: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      section.welcome {
+        padding: 3rem 2rem;
+        border-radius: 1.5rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      .card {
+        border-radius: 1rem;
+        padding: 1.8rem;
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: 0 8px 20px rgba(0, 255, 255, 0.1);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .card:hover {
+        box-shadow: 0 12px 30px rgba(0, 255, 255, 0.35);
+        transform: translateY(-6px);
+      }
+
+      .card h3 {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: #00f0ff;
+        letter-spacing: 0.05em;
+        user-select: none;
+      }
+
+      .card p {
+        color: #ccc;
+        flex-grow: 1;
+        user-select: none;
+      }
+
+      /* Simple music player */
+      .music-player {
+        margin-top: 4rem;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem 2rem;
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        box-shadow: 0 8px 24px rgba(0, 255, 255, 0.15);
+      }
+
+      .music-player button {
+        background: #00f0ff;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: #111;
+        font-weight: 700;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+        transition: background 0.3s ease;
+      }
+
+      .music-player button:hover {
+        background: #00d2e3;
+      }
+
+      .music-player .track-info {
+        color: #00f0ff;
+        font-weight: 600;
+        user-select: none;
+        flex-grow: 1;
+      }
+
+      footer {
+        margin-top: 6rem;
+        padding: 1.5rem 0;
+        text-align: center;
+        color: #666;
+        font-size: 0.875rem;
+        user-select: none;
+      }
+
+      @media (max-width: 768px) {
+        .grid-cols-3 {
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        .music-player {
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="px-8 py-5 flex justify-between items-center">
+      <h1 class="text-3xl gradient-text select-none cursor-default">
+        Music Blog
+      </h1>
+      <div class="flex space-x-10 text-lg">
+        <a href="#" tabindex="1">Home</a>
+        <a href="#" tabindex="2">Compositions</a>
+        <a href="#" tabindex="3">About</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <section class="glass welcome hover-glow">
+        <h2 class="text-5xl gradient-text mb-6 select-none">
+          Welcome to Music Blog
+        </h2>
+        <p>
+          Discover the world of music and composition through curated articles,
+          tips, and personal experiences.
+        </p>
+      </section>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <article class="card hover-glow">
+          <h3>🎹 Piano Techniques</h3>
+          <p>
+            Learn advanced piano techniques and improve your playing skills step
+            by step.
+          </p>
+        </article>
+        <article class="card hover-glow">
+          <h3>🧠 Composition Tips</h3>
+          <p>
+            Explore creative composition methods and start crafting your own
+            melodies.
+          </p>
+        </article>
+        <article class="card hover-glow">
+          <h3>🎼 Music Theory</h3>
+          <p>
+            Understand core concepts of music theory and apply them in real
+            compositions.
+          </p>
+        </article>
+      </div>
+
+      <!-- Music Player Sample -->
+      <div class="music-player glass">
+        <div class="track-info">
+          🎵 Current Track: "Inspiration" by Musician
+        </div>
+        <button aria-label="Play/Pause">
+          <svg
+            width="50"
+            height="50"
+            viewBox="0 0 50 50"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon points="15,10 40,25 15,40" fill="black" />
+          </svg>
+        </button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>&copy; 2025 Music Blog. Designed with 🎶 and ❤️</footer>
+  </body>
+</html>
