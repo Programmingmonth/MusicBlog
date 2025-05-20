@@ -120,7 +120,6 @@
         user-select: none;
       }
 
-      /* Simple music player */
       .music-player {
         margin-top: 4rem;
         background: rgba(255, 255, 255, 0.05);
@@ -185,9 +184,9 @@
         Music Blog
       </h1>
       <div class="flex space-x-10 text-lg">
-        <a href="#" tabindex="1">Home</a>
-        <a href="#" tabindex="2">Compositions</a>
-        <a href="#" tabindex="3">About</a>
+        <a href="#">Home</a>
+        <a href="#">Compositions</a>
+        <a href="#">About</a>
       </div>
     </nav>
 
@@ -203,6 +202,7 @@
         </p>
       </section>
 
+      <!-- Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         <article class="card hover-glow">
           <h3>🎹 Piano Techniques</h3>
@@ -210,24 +210,44 @@
             Learn advanced piano techniques and improve your playing skills step
             by step.
           </p>
+          <button
+            onclick="location.href='piano.html'"
+            class="mt-4 text-center bg-cyan-400 text-black font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-cyan-300 transition"
+          >
+            Open
+          </button>
         </article>
+
         <article class="card hover-glow">
           <h3>🧠 Composition Tips</h3>
           <p>
             Explore creative composition methods and start crafting your own
             melodies.
           </p>
+          <button
+            onclick="location.href='composition.html'"
+            class="mt-4 text-center bg-cyan-400 text-black font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-cyan-300 transition"
+          >
+            Open
+          </button>
         </article>
+
         <article class="card hover-glow">
           <h3>🎼 Music Theory</h3>
           <p>
             Understand core concepts of music theory and apply them in real
             compositions.
           </p>
+          <button
+            onclick="location.href='theory.html'"
+            class="mt-4 text-center bg-cyan-400 text-black font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-cyan-300 transition"
+          >
+            Open
+          </button>
         </article>
       </div>
 
-      <!-- Music Player Sample -->
+      <!-- Music Player -->
       <div class="music-player glass">
         <div class="track-info">
           🎵 Current Track: "Inspiration" by Musician
