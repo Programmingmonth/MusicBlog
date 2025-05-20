@@ -12,3 +12,6 @@ def composition(request):
 
 def theory(request):
     return render(request, 'theory.html')
+
+def about(request):
+    return render(request, 'About.html')
