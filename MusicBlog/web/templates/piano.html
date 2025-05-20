@@ -15,6 +15,7 @@
         background: radial-gradient(circle at top left, #0f0f13, #07070a);
         color: #eee;
         min-height: 100vh;
+        overflow-x: hidden;
       }
 
       .glass {
@@ -72,21 +73,63 @@
         width: 100%;
       }
 
-      main {
-        padding-top: 96px;
-        max-width: 1200px;
-        margin: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
+      .btn-glow {
+        background: linear-gradient(135deg, #00f0ff, #ff00f7);
+        color: white;
+        padding: 0.75rem 2rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 16px rgba(0, 255, 255, 0.4);
       }
 
-      section.welcome {
-        padding: 3rem 2rem;
-        border-radius: 1.5rem;
-        margin-bottom: 3rem;
+      .btn-glow:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 24px rgba(255, 0, 247, 0.5);
+      }
+
+      .hero {
+        padding-top: 140px;
         text-align: center;
+        padding-bottom: 100px;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        color: #bbb;
+        max-width: 600px;
+        margin: auto;
         font-size: 1.1rem;
         line-height: 1.6;
+      }
+
+      .neon-line {
+        height: 6px;
+        width: 900px;
+        margin: 2rem auto;
+        background: linear-gradient(90deg, #00f0ff, #ff00f7);
+        border-radius: 999px;
+      }
+
+      .neon-line2 {
+        height: 6px;
+        width: 800px;
+        margin: 2rem auto;
+        background: linear-gradient(90deg, #ff0000, #ff00f7);
+        border-radius: 999px;
+      }
+
+      .neon-line3 {
+        height: 6px;
+        width: 700px;
+        margin: 2rem auto;
+        background: linear-gradient(90deg, #ffe600, #ff00f7);
+        border-radius: 999px;
       }
     </style>
   </head>
@@ -94,13 +137,44 @@
     <!-- Navbar -->
     <nav class="px-8 py-5 flex justify-between items-center">
       <h1 class="text-3xl gradient-text select-none cursor-default">
-        Piano Blog
+        PINAO
       </h1>
       <div class="flex space-x-10 text-lg">
         <a href="/">Home</a>
         <a href="#">Compositions</a>
-        <a href="#">About</a>
+        <a href="/about/">About</a>
       </div>
     </nav>
+
+    <!-- Hero Section -->
+    <main class="hero">
+      <h2 class="gradient-text">Welcome to the Future of Music</h2>
+      <div class="neon-line"></div>
+
+      <p>
+        🎹 What is a Piano? The piano is one of the most popular and versatile
+        musical instruments, producing sound by hammers striking metal strings
+        inside the body.
+      </p>
+
+      <div class="neon-line2"></div>
+
+      <p>
+        ✅ Main Features of the Piano: Keys: 88 keys (52 white, 36 black) Sound
+        Type: Can play multiple notes at once (polyphonic) Pitch Range: Covers
+        nearly the entire human hearing range Pedals: Usually 2 or 3 pedals to
+        control sustain and dynamics
+      </p>
+
+      <div class="neon-line3"></div>
+
+      <p>
+        🎵 Uses of the Piano: Music education Composing and arranging Live
+        performances and concerts Creating digital music
+      </p>
+      <div class="mt-8">
+        <a href="#" class="btn-glow">Launch DApp</a>
+      </div>
+    </main>
   </body>
 </html>
