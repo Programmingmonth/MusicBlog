@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,11 +27,19 @@
       }
 
       .glass:hover {
-        box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
       }
 
       .gradient-text {
         background: linear-gradient(90deg, #00f0ff, #ff00f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      .gradient-text2 {
+        background: linear-gradient(90deg, #ffe100, #cc00ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 700;
@@ -88,6 +97,17 @@
         font-size: 1.1rem;
         line-height: 1.6;
       }
+
+      .theory-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        margin-top: 1rem;
+      }
+
+      #cnotes {
+        font-size: 19px
+      }
     </style>
   </head>
   <body>
@@ -102,5 +122,17 @@
         <a href="#">About</a>
       </div>
     </nav>
+
+    <!-- Main Content -->
+    <main>
+      <section class="glass welcome">
+        <h2 class="text-4xl gradient-text2 mb-4">Treble Clef Notes</h2>
+        <img src="{% static 'image/Clef.png' %}" alt="Treble Clef Notes" class="theory-img mx-auto" />
+        <p class="mt-4 text-base text-gray-300" id="cnotes">
+          This diagram shows the notes on the treble clef from C to B. Each
+          position represents a note's pitch in standard music notation.
+        </p>
+      </section>
+    </main>
   </body>
 </html>
