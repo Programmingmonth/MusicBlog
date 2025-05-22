@@ -6,7 +6,7 @@
 ✨ This project is for music and I put every song I made inside this project.
 
 # 🎟️ TODO
-- [] Complated.
+- [ ] Complated.
 
 <img
     alt="Python"
