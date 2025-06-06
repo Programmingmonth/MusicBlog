@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +20,7 @@
 
       .glass {
         backdrop-filter: blur(24px);
-        background: rgba(255, 255, 255, 0.06);
+        background metropolitana(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         transition: box-shadow 0.3s ease;
@@ -89,12 +90,44 @@
         line-height: 1.6;
       }
 
-      .hero p {
-        color: #bbb;
-        max-width: 600px;
-        margin: auto;
-        font-size: 1.1rem;
-        line-height: 1.6;
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      .logo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-item img {
+        width: 150px;
+        height: auto;
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .logo-item img:hover {
+        transform: scale(1.1);
+      }
+
+      .logo-item h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .gradient-text2 {
+        background: linear-gradient(90deg, #ea00ff, #ff5900);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        letter-spacing: 0.05em;
       }
     </style>
   </head>
@@ -113,19 +146,39 @@
 
     <!-- Main Content -->
     <main>
+      <!-- Welcome Section -->
       <section class="welcome glass">
         <p>
           What is DAW: DAW (Digital Audio Workstation) is software used for
           recording, editing, mixing, and mastering audio. Composers, producers,
-          and sound engineers use DAWs to create and manage music projects. Main
-          functions of a DAW: Record audio and MIDI Edit sound and notes Use
-          virtual instruments (VSTi) and effects Mix multiple tracks Master the
-          final track Popular DAWs: FL Studio – Popular among beatmakers and
-          electronic music producers Ableton Live – Great for live performance
-          and production Logic Pro – Mac-only, professional for music
-          composition Cubase – Long-standing DAW for composing and arranging Pro
-          Tools – Industry standard for professional studios
+          and sound engineers use DAWs to create and manage music projects.
+          <br /><br />
+          Popular DAWs: FL Studio – Ableton Live – Logic Pro – Cubase – Pro
+          Tools
         </p>
+      </section>
+
+      <!-- Popular DAWs Section -->
+      <section class="welcome glass">
+        <h2 class="text-4xl gradient-text mb-4">Popular DAWs</h2>
+        <div class="logo-container">
+          <div class="logo-item">
+            <img src="{% static 'image/Cubase.png' %}" alt="Cubase Logo" />
+            <h1 class="gradient-text2">Cubase</h1>
+          </div>
+          <div class="logo-item">
+            <img src="{% static 'image/FlStudio.png' %}" alt="FL Studio Logo" />
+            <h1 class="gradient-text2">FL Studio</h1>
+          </div>
+          <div class="logo-item">
+            <img src="{% static 'image/Ableton.png' %}" alt="Ableton Logo" />
+            <h1 class="gradient-text2">Ableton</h1>
+          </div>
+          <div class="logo-item">
+            <img src="{% static 'image/LogicPro.png' %}" alt="Logic Pro Logo" />
+            <h1 class="gradient-text2">Logic Pro</h1>
+          </div>
+        </div>
       </section>
     </main>
   </body>
