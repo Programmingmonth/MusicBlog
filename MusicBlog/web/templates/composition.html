@@ -20,7 +20,7 @@
 
       .glass {
         backdrop-filter: blur(24px);
-        background metropolitana(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         transition: box-shadow 0.3s ease;
@@ -106,7 +106,8 @@
 
       .logo-item img {
         width: 150px;
-        height: auto;
+        height: 150px;
+        object-fit: contain;
         border-radius: 0.5rem;
         background: rgba(255, 255, 255, 0.1);
         padding: 1rem;
@@ -124,6 +125,52 @@
 
       .gradient-text2 {
         background: linear-gradient(90deg, #ea00ff, #ff5900);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        transition: background 0.3s ease;
+      }
+
+      .links-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+
+      .links-container a {
+        font-size: 1.1rem;
+        position: relative;
+        transition: transform 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      .links-container a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(90deg, #ea00ff, #ff5900);
+        transition: width 0.3s ease;
+      }
+
+      .links-container a:hover::after {
+        width: 100%;
+      }
+
+      .links-container a:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 10px rgba(234, 0, 255, 0.5), 0 0 20px rgba(255, 89, 0, 0.3);
+      }
+
+      .links-container a:hover .gradient-text2 {
+        background: linear-gradient(90deg, #ff00f7, #00f0ff);
+      }
+
+      .gradient-text-link {
+        background: linear-gradient(90deg, #00b7ff, #ff5900);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 700;
@@ -163,21 +210,30 @@
         <h2 class="text-4xl gradient-text mb-4">Popular DAWs</h2>
         <div class="logo-container">
           <div class="logo-item">
-            <img src="{% static 'image/Cubase.png' %}" alt="Cubase Logo" />
+            <img src="{% static 'image/D/Cubase.png' %}" alt="Cubase Logo" />
             <h1 class="gradient-text2">Cubase</h1>
           </div>
           <div class="logo-item">
-            <img src="{% static 'image/FlStudio.png' %}" alt="FL Studio Logo" />
+            <img src="{% static 'image/D/FlStudio.png' %}" alt="FL Studio Logo" />
             <h1 class="gradient-text2">FL Studio</h1>
           </div>
           <div class="logo-item">
-            <img src="{% static 'image/Ableton.png' %}" alt="Ableton Logo" />
+            <img src="{% static 'image/D/Ableton.png' %}" alt="Ableton Logo" />
             <h1 class="gradient-text2">Ableton</h1>
           </div>
           <div class="logo-item">
-            <img src="{% static 'image/LogicPro.png' %}" alt="Logic Pro Logo" />
+            <img src="{% static 'image/D/LogicPro.png' %}" alt="Logic Pro Logo" />
             <h1 class="gradient-text2">Logic Pro</h1>
           </div>
+        </div>
+        <div class="flex justify-center mt-7">
+          <p>Links to program sites:</p>
+        </div>
+        <div class="links-container">
+          <a href="https://www.image-line.com/fl-studio/" class="gradient-text-link">FL Studio</a>
+          <a href="https://www.ableton.com/en/live/" class="gradient-text-link">Ableton</a>
+          <a href="https://www.apple.com/logic-pro/" class="gradient-text-link">Logic Pro</a>
+          <a href="https://www.steinberg.net/cubase/" class="gradient-text-link">Cubase</a>
         </div>
       </section>
     </main>
