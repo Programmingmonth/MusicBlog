@@ -162,7 +162,8 @@
 
       .links-container a:hover {
         transform: scale(1.05);
-        text-shadow: 0 0 10px rgba(234, 0, 255, 0.5), 0 0 20px rgba(255, 89, 0, 0.3);
+        text-shadow: 0 0 10px rgba(234, 0, 255, 0.5),
+          0 0 20px rgba(255, 89, 0, 0.3);
       }
 
       .links-container a:hover .gradient-text2 {
@@ -175,6 +176,27 @@
         -webkit-text-fill-color: transparent;
         font-weight: 700;
         letter-spacing: 0.05em;
+      }
+
+      .gradient-text-highlight {
+        background: linear-gradient(90deg, #ea00ff, #ff5900);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      .gradient-text-highlight2 {
+        background: linear-gradient(90deg, #ff7700, #ff00dd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      #Program {
+        color: rgb(255, 208, 0);
+        font-size: large
       }
     </style>
   </head>
@@ -200,8 +222,10 @@
           recording, editing, mixing, and mastering audio. Composers, producers,
           and sound engineers use DAWs to create and manage music projects.
           <br /><br />
-          Popular DAWs: FL Studio – Ableton Live – Logic Pro – Cubase – Pro
-          Tools
+          Popular DAWs: <span class="gradient-text-highlight2">FL Studio</span> –
+          <span class="gradient-text-highlight2">Ableton Live</span> –
+          <span class="gradient-text-highlight2">Logic Pro</span> –
+          <span class="gradient-text-highlight2">Cubase Pro Tools</span>
         </p>
       </section>
 
@@ -214,7 +238,10 @@
             <h1 class="gradient-text2">Cubase</h1>
           </div>
           <div class="logo-item">
-            <img src="{% static 'image/D/FlStudio.png' %}" alt="FL Studio Logo" />
+            <img
+              src="{% static 'image/D/FlStudio.png' %}"
+              alt="FL Studio Logo"
+            />
             <h1 class="gradient-text2">FL Studio</h1>
           </div>
           <div class="logo-item">
@@ -222,18 +249,31 @@
             <h1 class="gradient-text2">Ableton</h1>
           </div>
           <div class="logo-item">
-            <img src="{% static 'image/D/LogicPro.png' %}" alt="Logic Pro Logo" />
+            <img
+              src="{% static 'image/D/LogicPro.png' %}"
+              alt="Logic Pro Logo"
+            />
             <h1 class="gradient-text2">Logic Pro</h1>
           </div>
         </div>
-        <div class="flex justify-center mt-7">
+        <div class="flex justify-center mt-7" id="Program">
           <p>Links to program sites:</p>
         </div>
         <div class="links-container">
-          <a href="https://www.image-line.com/fl-studio/" class="gradient-text-link">FL Studio</a>
-          <a href="https://www.ableton.com/en/live/" class="gradient-text-link">Ableton</a>
-          <a href="https://www.apple.com/logic-pro/" class="gradient-text-link">Logic Pro</a>
-          <a href="https://www.steinberg.net/cubase/" class="gradient-text-link">Cubase</a>
+          <a
+            href="https://www.image-line.com/fl-studio/"
+            class="gradient-text-link"
+            >FL Studio</a
+          >
+          <a href="https://www.ableton.com/en/live/" class="gradient-text-link"
+            >Ableton</a
+          >
+          <a href="https://www.apple.com/logic-pro/" class="gradient-text-link"
+            >Logic Pro</a
+          >
+          <a href="https://www.steinberg.net/cubase/" class="gradient-text-link"
+            >Cubase</a
+          >
         </div>
       </section>
     </main>
