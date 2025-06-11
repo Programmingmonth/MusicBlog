@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -125,13 +126,18 @@
         height: 1rem;
         fill: currentColor;
       }
-      
+
       .gradient-text-highlight {
         background: linear-gradient(90deg, #ea00ff, #ff5900);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 700;
         letter-spacing: 0.05em;
+      }
+
+      .Piano {
+        max-width: 100%;
+        height: auto;
       }
     </style>
   </head>
@@ -151,8 +157,25 @@
       <section class="welcome glass">
         <h2 class="text-4xl gradient-text mb-4">About Us</h2>
         <p>
-          Hello, I created this site for music that might be useful to someone and help them.
-          <a href="https://github.com/Programmingmonth/MusicBlog.git" class="gradient-text-highlight">My Repositories</a>
+          Hello, I created this site for music that might be useful to someone
+          and help them.
+          <a
+            href="https://github.com/Programmingmonth/MusicBlog.git"
+            class="gradient-text-highlight"
+            >My Repositories</a
+          >
+        </p>
+      </section>
+
+      <section class="welcome glass mt-12">
+        <h2 class="text-4xl mb-3">Piano</h2>
+        <img
+          src="{% static 'image/Piano.png' %}"
+          alt=""
+          class="Piano mx-auto rounded-lg"
+        />
+        <p class="mt-4 text-base text-gray-300" id="cnotes">
+          
         </p>
       </section>
     </main>
