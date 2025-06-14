@@ -12,9 +12,85 @@
     <style>
       body {
         font-family: "Roboto Mono", monospace;
-        background: radial-gradient(circle at top left, #0f0f13, #07070a);
+        background: linear-gradient(135deg, #0a0e1f, #1a1f3a);
         color: #eee;
         min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(0, 255, 0, 0.1) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 0, 255, 0.1) 0%,
+            transparent 70%
+          );
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .web3-nodes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .web3-node {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(0, 255, 0, 0.7);
+        border-radius: 50%;
+        animation: float 15s infinite;
+      }
+
+      .web3-node::after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 0;
+        background: rgba(0, 255, 0, 0.3);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: connect 3s infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(20px, 20px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes connect {
+        0% {
+          height: 0;
+        }
+        50% {
+          height: 100px;
+        }
+        100% {
+          height: 0;
+        }
       }
 
       .glass {
@@ -23,6 +99,8 @@
         border: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         transition: box-shadow 0.3s ease;
+        position: relative;
+        z-index: 2;
       }
 
       .glass:hover {
@@ -87,14 +165,30 @@
         text-align: center;
         font-size: 1.1rem;
         line-height: 1.6;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 15, 36, 0.8),
+          rgba(0, 120, 140, 0.6)
+        );
+        box-shadow: 0 10px 40px rgba(0, 200, 255, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      section.welcome:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 200, 255, 0.5);
       }
 
       .card {
         border-radius: 1rem;
         padding: 1.8rem;
-        background: rgba(255, 255, 255, 0.07);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 15, 36, 0.7),
+          rgba(0, 100, 120, 0.5)
+        );
         box-shadow: 0 8px 20px rgba(0, 255, 255, 0.1);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        transition: transform 0.4s ease, box-shadow 0.3s ease;
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -120,59 +214,130 @@
         user-select: none;
       }
 
+      .card button {
+        background: linear-gradient(45deg, #00f0ff, #ff00f7);
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 6px 15px rgba(0, 255, 255, 0.4);
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .card button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(45deg, #00d2e3, #e600e6);
+      }
+
       .music-player {
         margin-top: 4rem;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1rem 2rem;
+        padding: 1.5rem 2rem;
         border-radius: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 15, 36, 0.8),
+          rgba(0, 120, 140, 0.6)
+        );
+        box-shadow: 0 10px 40px rgba(0, 200, 255, 0.3);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 1rem;
-        box-shadow: 0 8px 24px rgba(0, 255, 255, 0.15);
+        gap: 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
-      .music-player button {
-        background: #00f0ff;
-        border: none;
-        border-radius: 50%;
-        width: 48px;
-        height: 48px;
-        color: #111;
-        font-weight: 700;
-        font-size: 1.5rem;
-        cursor: pointer;
-        box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
-        transition: background 0.3s ease;
-      }
-
-      .music-player button:hover {
-        background: #00d2e3;
+      .music-player:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 200, 255, 0.5);
       }
 
       .music-player .track-info {
         color: #00f0ff;
-        font-weight: 600;
-        user-select: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .music-player button {
+        background: linear-gradient(45deg, #00f0ff, #ff00f7);
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.8rem;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 255, 255, 0.6);
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .music-player button:hover {
+        transform: scale(1.1);
+        background: linear-gradient(45deg, #00d2e3, #e600e6);
+      }
+
+      .music-player button svg {
+        width: 70%;
+        height: 70%;
+      }
+
+      .music-player button.playing {
+        background: linear-gradient(45deg, #00d2e3, #e600e6);
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .music-player.playing .track-info {
+        animation: pulse 2s infinite;
       }
 
       footer {
-        margin-top: 6rem;
-        padding: 1.5rem 0;
+        padding: 0.5rem 1rem;
         text-align: center;
-        color: #666;
-        font-size: 0.875rem;
-        user-select: none;  
+        background: linear-gradient(90deg, #1a1f3a, #2a2f4a);
+        color: #eee;
+        font-size: 0.9rem;
+        margin-top: 2rem;
       }
 
       @media (max-width: 768px) {
         .grid-cols-3 {
           grid-template-columns: repeat(1, minmax(0, 1fr));
         }
-        .music-player {
+        .music-player,
+        .welcome,
+        .card {
           flex-direction: column;
-          gap: 0.8rem;
+          gap: 1rem;
+          padding: 1rem;
+        }
+        .music-player button,
+        .card button {
+          width: 50px;
+          height: 50px;
+        }
+        footer {
+          padding: 0.5rem;
+          font-size: 0.8rem;
         }
       }
     </style>
@@ -180,9 +345,7 @@
   <body>
     <!-- Navbar -->
     <nav class="px-8 py-5 flex justify-between items-center">
-      <h1 class="text-3xl gradient-text select-none cursor-default">
-        MUSIC
-      </h1>
+      <h1 class="text-3xl gradient-text select-none cursor-default">MUSIC</h1>
       <div class="flex space-x-10 text-lg">
         <a href="/">Home</a>
         <a href="/composition/">Compositions</a>
@@ -192,7 +355,7 @@
 
     <!-- Main Content -->
     <main>
-      <section class="glass welcome hover-glow">
+      <section class="glass welcome">
         <h2 class="text-5xl gradient-text mb-6 select-none">
           Welcome to Music Blog
         </h2>
@@ -204,21 +367,18 @@
 
       <!-- Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <article class="card hover-glow">
+        <article class="card">
           <h3>🎹 Piano Techniques</h3>
           <p>
             Learn advanced piano techniques and improve your playing skills step
             by step.
           </p>
-          <button
-            onclick="location.href='piano'"
-            class="mt-4 text-center bg-cyan-400 text-black font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-cyan-300 transition"
-          >
+          <button onclick="location.href='piano'" class="mt-4 text-center">
             Open
           </button>
         </article>
 
-        <article class="card hover-glow">
+        <article class="card">
           <h3>🧠 Composition Tips</h3>
           <p>
             Explore creative composition methods and start crafting your own
@@ -226,22 +386,19 @@
           </p>
           <button
             onclick="location.href='composition'"
-            class="mt-4 text-center bg-cyan-400 text-black font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-cyan-300 transition"
+            class="mt-4 text-center"
           >
             Open
           </button>
         </article>
 
-        <article class="card hover-glow">
+        <article class="card">
           <h3>🎼 Music Theory</h3>
           <p>
             Understand core concepts of music theory and apply them in real
             compositions.
           </p>
-          <button
-            onclick="location.href='theory'"
-            class="mt-4 text-center bg-cyan-400 text-black font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-cyan-300 transition"
-          >
+          <button onclick="location.href='theory'" class="mt-4 text-center">
             Open
           </button>
         </article>
@@ -250,7 +407,7 @@
       <!-- Music Player -->
       <div class="music-player glass">
         <div class="track-info">
-          🎵 Current Track: "Inspiration" by Musician
+          🎵 Current Track: "William Fox" by Musician
         </div>
         <button aria-label="Play/Pause">
           <svg
@@ -259,13 +416,15 @@
             viewBox="0 0 50 50"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <polygon points="15,10 40,25 15,40" fill="black" />
+            <polygon points="15,10 40,25 15,40" fill="white" />
           </svg>
         </button>
       </div>
     </main>
 
     <!-- Footer -->
-    <footer>&copy; 2025 Music Blog. Designed with 🎶 and ❤️</footer>
+    <footer>
+      <p>© 2025 Music Blog. Designed with 🎶 and ❤️</p>
+    </footer>
   </body>
 </html>
