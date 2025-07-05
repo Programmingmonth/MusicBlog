@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -98,13 +99,14 @@
         background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-        transition: box-shadow 0.3s ease;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
         position: relative;
         z-index: 2;
       }
 
       .glass:hover {
         box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+        transform: translateY(-3px);
       }
 
       .gradient-text {
@@ -233,12 +235,12 @@
 
       .music-player {
         margin-top: 4rem;
-        padding: 1.5rem 2rem;
+        padding: 2rem;
         border-radius: 1.5rem;
         background: linear-gradient(
           135deg,
-          rgba(0, 15, 36, 0.8),
-          rgba(0, 120, 140, 0.6)
+          rgba(0, 15, 36, 0.85),
+          rgba(0, 120, 140, 0.65)
         );
         box-shadow: 0 10px 40px rgba(0, 200, 255, 0.3);
         display: flex;
@@ -246,6 +248,29 @@
         justify-content: space-between;
         gap: 1.5rem;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .music-player::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(0, 255, 255, 0.2),
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .music-player.playing::before {
+        opacity: 1;
       }
 
       .music-player:hover {
@@ -256,20 +281,21 @@
       .music-player .track-info {
         color: #00f0ff;
         font-weight: 700;
-        font-size: 1.1rem;
-        text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        font-size: 1.2rem;
+        text-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
         flex-grow: 1;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        transition: transform 0.3s ease, color 0.3s ease;
       }
 
       .music-player button {
         background: linear-gradient(45deg, #00f0ff, #ff00f7);
         border: none;
         border-radius: 50%;
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -277,37 +303,46 @@
         font-size: 1.8rem;
         cursor: pointer;
         box-shadow: 0 8px 20px rgba(0, 255, 255, 0.6);
-        transition: transform 0.3s ease, background 0.3s ease;
+        transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
       }
 
       .music-player button:hover {
         transform: scale(1.1);
         background: linear-gradient(45deg, #00d2e3, #e600e6);
+        box-shadow: 0 10px 25px rgba(0, 255, 255, 0.8);
       }
 
       .music-player button svg {
-        width: 70%;
-        height: 70%;
+        width: 60%;
+        height: 60%;
+        transition: transform 0.2s ease;
       }
 
       .music-player button.playing {
         background: linear-gradient(45deg, #00d2e3, #e600e6);
+        box-shadow: 0 10px 25px rgba(0, 255, 255, 0.8);
       }
 
       @keyframes pulse {
         0% {
           transform: scale(1);
+          text-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+          color: #00f0ff;
         }
         50% {
           transform: scale(1.05);
+          text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+          color: #00d2e3;
         }
         100% {
           transform: scale(1);
+          text-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+          color: #00f0ff;
         }
       }
 
       .music-player.playing .track-info {
-        animation: pulse 2s infinite;
+        animation: pulse 2s infinite ease-in-out;
       }
 
       footer {
@@ -334,6 +369,10 @@
         .card button {
           width: 50px;
           height: 50px;
+        }
+        .music-player button svg {
+          width: 55%;
+          height: 55%;
         }
         footer {
           padding: 0.5rem;
@@ -405,18 +444,31 @@
       </div>
 
       <!-- Music Player -->
-      <div class="music-player glass">
-        <div class="track-info">
+      <div class="music-player glass" id="music-player">
+        <div class="track-info" id="track-info">
           🎵 Current Track: "William Fox" by Musician
         </div>
-        <button aria-label="Play/Pause">
+        <audio id="audio-player" src="{% static 'Music/Gang School.mp3' %}" preload="auto"></audio>
+        <button id="play-pause-btn" aria-label="Play/Pause">
           <svg
+            id="play-icon"
             width="48"
             height="48"
             viewBox="0 0 50 50"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <polygon points="15,10 40,25 15,40" fill="white" />
+            <polygon points="20,10 40,25 20,40" fill="white" />
+          </svg>
+          <svg
+            id="pause-icon"
+            width="48"
+            height="48"
+            viewBox="0 0 50 50"
+            xmlns="http://http://www.w3.org/2000/svg"
+            style="display: none;"
+          >
+            <rect x="18" y="10" width="8" height="30" fill="white" />
+            <rect x="30" y="10" width="8" height="30" fill="white" />
           </svg>
         </button>
       </div>
@@ -426,5 +478,61 @@
     <footer>
       <p>© 2025 Music Blog. Designed with 🎶 and ❤️</p>
     </footer>
+
+    <script>
+      // Music Player Functionality
+      const audioPlayer = document.getElementById('audio-player');
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const playIcon = document.getElementById('play-icon');
+      const pauseIcon = document.getElementById('pause-icon');
+      const musicPlayer = document.getElementById('music-player');
+      const trackInfo = document.getElementById('track-info');
+
+      // Debug: Check if audio element is loaded
+      if (!audioPlayer) {
+        console.error('Audio player element not found!');
+      } else {
+        console.log('Audio player loaded, src:', audioPlayer.src);
+      }
+
+      // Check if audio can play
+      audioPlayer.addEventListener('canplay', () => {
+        console.log('Audio is ready to play');
+      });
+
+      // Handle errors
+      audioPlayer.addEventListener('error', (e) => {
+        console.error('Audio error:', e);
+        alert('Failed to load audio file. Please check the file path or format.');
+      });
+
+      playPauseBtn.addEventListener('click', () => {
+        console.log('Play/Pause button clicked, paused:', audioPlayer.paused);
+        if (audioPlayer.paused) {
+          audioPlayer.play().then(() => {
+            console.log('Playing audio');
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+            musicPlayer.classList.add('playing');
+          }).catch((error) => {
+            console.error('Play failed:', error);
+            alert('Failed to play audio. Check console for details.');
+          });
+        } else {
+          audioPlayer.pause();
+          console.log('Pausing audio');
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+          musicPlayer.classList.remove('playing');
+        }
+      });
+
+      audioPlayer.addEventListener('ended', () => {
+        console.log('Audio ended');
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        musicPlayer.classList.remove('playing');
+      });
+    </script>
   </body>
 </html>

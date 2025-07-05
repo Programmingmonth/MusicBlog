@@ -7,7 +7,7 @@
 
 # 🎟️ TODO
 - [x] Sheet music.
-- [ ] Complated.
+- [x] Complated.
 
 <img
     alt="Python"
